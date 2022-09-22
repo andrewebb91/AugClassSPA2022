@@ -13,14 +13,16 @@ function render(state = store.Home) {
   ${Main(state)}
   ${Footer()}
   `;
+  afterRender(state);
+  router.updatePageLinks();
 }
-router.updatePageLinks();
 
-// add menu toggle to bars icon in nav bar
-// document.querySelector(".fa-bars").addEventListener("click", () => {
-//   document.querySelector("nav > ul").classList.toggle("hidden--mobile");
-// });
-
+function afterRender(state) {
+  // add menu toggle to bars icon in nav bar
+  document.querySelector(".fa-bars").addEventListener("click", () => {
+    document.querySelector("nav > ul").classList.toggle("hidden--mobile");
+  });
+}
 router
   .on({
     "/": () => render(),
